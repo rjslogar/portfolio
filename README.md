@@ -30,7 +30,7 @@ A case study of an overview page that explains a real-time analytics platform, f
 
 ### [Feature Context Page](feature-context-page.svg)
 
-A documentation page design that combines several learning modes in one place: overview text, platform summary diagrams, a demo video, current release notes, and a Feature Focus panel of use cases.
+A documentation page design that combines several learning modes in one place to enhance both human and agent content discoverability and comprehension: overview text, platform summary diagrams, a demo video, current release notes, and a Feature Focus panel of use cases. 
 
 <a href="feature-context-page.svg"><img src="feature-context-page.svg" alt="Feature context documentation page" width="600"></a>
 
