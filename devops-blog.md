@@ -1,6 +1,6 @@
 # DevOps, Meet Real-Time User Experience
 
-*Writing sample: product blog post · Rich Slogar · [Download PDF](devops-blog.pdf)*
+*Writing sample: product blog post · Rich Slogar*
 
 > **About this sample:** This blog content was written to help introduce Conviva App features to DevOps teams. The content is intended for external audiences interested in learning more about Conviva products. I collaborated with the product architect and product manager to align with current functionality and adoption strategies. Content for the related use cases was also developed and included in the Conviva Learning Center to help transition users from prospects to early adopters. Images intentionally blurred.
 
@@ -42,13 +42,13 @@ Conviva for App displays metric time series and distributions for session select
 
 Session selection based on a network request duration spike and average page load times from 0 to 5 seconds.
 
-![Session selection based on a network request duration spike (image intentionally blurred)](images/devops-blog-1.png)
+![Session selection based on a network request duration spike (image intentionally blurred)](devops-blog-1.png)
 
 Dimension drill-down by offending network request API to compare page URL performance.
 
-![Dimension drill-down by network request API (image intentionally blurred)](images/devops-blog-2.png)
+![Dimension drill-down by network request API (image intentionally blurred)](devops-blog-2.png)
 
-![Page URL performance comparison (image intentionally blurred)](images/devops-blog-3.png)
+![Page URL performance comparison (image intentionally blurred)](devops-blog-3.png)
 
 Designed from the ground up for advanced real-time time-state metric comparisons at scale, these combinatorics across dimensional entities enable pattern correlation in user experience impacts with the performance of application computations and services. Derived from auto-collected and custom metric performance and the related dimension values, the correlation possibilities scale to match the complexities of modern web technology stacks, for example, performing comparative analysis drill downs to isolate application sessions with *Login Times* that spiked only on specific device operating systems in a limited geographic area.
 
@@ -75,7 +75,7 @@ Create your own custom metrics for tracking interval and conversion-based event 
 
 Often complex application performance and user experience issues remain undetected; here too, Conviva for App has you covered. AI-based algorithms and AI-driven alerts automatically surface anomalous events and insights to identify the under-performing root cause group that crossed the established performance baseline with significant unique user impacts. This example shows an AI alert for Avg Network Request Duration with performance baseline (dashed blue line), highlighted deviation spike (solid blue line) and impacted unique devices (orange line) and alert start/peak/end markers.
 
-![AI alert for average network request duration (image intentionally blurred)](images/devops-blog-4.png)
+![AI alert for average network request duration (image intentionally blurred)](devops-blog-4.png)
 
 ### Flexible Ingest
 

@@ -6,9 +6,9 @@ Samples of my work across product strategy, developer documentation, product doc
 
 ## Product Strategy
 
-### [PLG Strategy for an Emerging Analytics Enterprise](plg-strategy.md)
+### [PLG Strategy for an Emerging Analytics Enterprise](plg-strategy-emerging-enterprise.docx)
 
-A product-led growth strategy for an analytics provider squeezed between free tools and high-priced incumbents. It covers market positioning, counter-positioning against each competitor class, the activation and PQL design, a funnel-to-ARR model, and a 24-week execution plan with a go/no-go gate. *Capstone analysis, 2026.* · [Word version](plg-strategy-emerging-enterprise.docx)
+A product-led growth strategy for an analytics provider squeezed between free tools and high-priced incumbents. It covers market positioning, counter-positioning against each competitor class, the activation and PQL design, a funnel-to-ARR model, and a 24-week execution plan with a go/no-go gate. *Capstone analysis, 2026 (Word document).*
 
 ## Developer Documentation
 

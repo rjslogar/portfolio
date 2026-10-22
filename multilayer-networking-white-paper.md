@@ -19,7 +19,7 @@ Traditional optical backbone networks carry multiple services such as voice, vid
 
 While Generalized Multi-Protocol Label Switching (GMPLS) has emerged as a leading framework for the confluence of packet and wavelength switching across optical networks, implementations of this standard have not led to shared intelligence between the optical transport and packet service layers.
 
-![Separate packet and optical layers: packet layer systems connect through optical transport systems to a separate optical layer, with MPLS/GELS at the packet layer and GMPLS at the optical layer](images/multilayer-wp-1-separate-layers.png)
+![Separate packet and optical layers: packet layer systems connect through optical transport systems to a separate optical layer, with MPLS/GELS at the packet layer and GMPLS at the optical layer](multilayer-wp-1-separate-layers.png)
 
 For example, DWDM transponders typically reside in the optical transport system, detached from the packet layer services. Traffic flows from a gray interface on a packet layer system to a gray interface on an optical networking system, and then onto a colored interface on the optical layer system. This interconnection between the packet layer and optical layer systems creates a roadblock to the two layers interacting with each other. Further, current methods for integrating packet and optical network in peer and overlay topologies either compromise the integrity of the routing and optical networks or significantly burden network capacity with replicated connection and traffic processing.
 
@@ -64,13 +64,13 @@ Another trend identified by carriers in the progression toward integrated packet
 
 Researchers at NTT Communications conducted a detailed study on the cost effectiveness achieved in such an architecture by using a photonic GMPLS router based network (IP router with DWDM interfaces and a wavelength cross connect integrated with a GMPLS control plane).[^1] Avoiding electronic processing at intermediate IP routers, cost reductions were more than 60% as the majority of traffic at any node was transit traffic. NTT's research showed that all-optical cut-through was applicable for 60%-70% of backbone traffic. As the optical backbone traffic grows, the need for intelligent all-optical bypass increases to minimize packet processing at intermediate core nodes.
 
-![Network cost reduction of photonic GMPLS versus an electrical MPLS network as through traffic using optical LSPs increases (NTT study)](images/multilayer-wp-2-ntt-cost-reduction.png)
+![Network cost reduction of photonic GMPLS versus an electrical MPLS network as through traffic using optical LSPs increases (NTT study)](multilayer-wp-2-ntt-cost-reduction.png)
 
 *Source: NTT Communications study.[^1]*
 
 Another study by British Telecom confirmed the value of optical bypass by measuring the number of physical hops on the optical traffic paths.[^2] The data verified that the majority of optical paths pass through a significant number of intermediate nodes (approximately 70% of the traffic paths required 4 or more physical hops). This confirms that avoiding electrical processing at intermediate nodes is an important factor in the development of next generation multi-layer networks. Further, this study also discussed the expected traffic growth patterns of BT's network and concluded that an intelligent all-optical mesh network with all-optical bypass at core nodes is the preferred network architecture.
 
-![Distribution of traffic paths by number of physical hops, peaking at 5 to 7 hops (British Telecom study)](images/multilayer-wp-3-bt-traffic-paths.png)
+![Distribution of traffic paths by number of physical hops, peaking at 5 to 7 hops (British Telecom study)](multilayer-wp-3-bt-traffic-paths.png)
 
 *Source: British Telecom study.[^2]*
 
@@ -84,7 +84,7 @@ Along with service level integration, a robust network must synchronize multi-la
 
 The TN320 system is designed from the ground up to enable intelligent, multi-layer networking across the packet and optical layers. The TN320 system enables an architecture where OTN-enabled DWDM interfaces sit on Layer 2/3 systems, such as IP routers. This IP/MPLS network is intelligently integrated with an all-optical DWDM TN320 network using a standardized GMPLS control plane. The TN320-based multi-layer solution has an overlay architecture where the GMPLS control plane of the optical layer and the MPLS control plane of the packet layer are integrated using GMPLS-UNI.
 
-![Integrated multi-layer networking across packet and optical layers: routers with OTN G.709 interfaces connect over GMPLS-UNI to a TN320-enabled all-optical mesh](images/multilayer-wp-4-integrated-network.png)
+![Integrated multi-layer networking across packet and optical layers: routers with OTN G.709 interfaces connect over GMPLS-UNI to a TN320-enabled all-optical mesh](multilayer-wp-4-integrated-network.png)
 
 The TN320 Navigator software provides the intelligence required to enable multi-layer networking with algorithms and software tools for implementing multi-layer traffic engineering based on optical parameters as well as multi-layer protection switching—1+1 (sub-50 ms), 1:n, mesh re-route (sub-500 ms)—across the packet and optical layers.
 
@@ -117,7 +117,7 @@ The TN320 solution provides for two ways of setting up multi-layer LSPs. Each me
 
 The first method involves first provisioning a lightpath (optical layer LSP) between two WDM-enabled router ports. Then, provision MPLS LSPs as are normally done. The two routers see each other at 1 hop, since the optical LSP is switched all-optically in the TN320 network. This method is simple but static, so there may be some inefficiencies in network utilization at the wavelength level.
 
-![TN320 optical layer LSP setup between a Layer 2/3 device, an ingress TN320, and egress TN320 nodes](images/multilayer-wp-5-lsp-setup.png)
+![TN320 optical layer LSP setup between a Layer 2/3 device, an ingress TN320, and egress TN320 nodes](multilayer-wp-5-lsp-setup.png)
 
 The setup sequence, step by step:
 
@@ -145,7 +145,7 @@ The TN320 solution supports a robust set of multi-layer protection schemes by wo
 
 As an illustration of how the TN320 solution helps implement a synchronized multi-layer protection switching paradigm across the packet and optical layers, consider an example of 1+1 protection switching implemented using an IP router with DWDM interfaces connected to a TN320 system. Based on the need to implement 1+1 protection, the TN320 solution calculates and provisions two diversely routed optical LSPs—one Working (W) and one Protect (P)—on two separate wavelengths.
 
-![1+1 protection switching: the ingress router duplicates Flow A onto Working and Protect paths across the TN320 all-optical mesh; the egress router selects between them](images/multilayer-wp-6-protection-switching.png)
+![1+1 protection switching: the ingress router duplicates Flow A onto Working and Protect paths across the TN320 all-optical mesh; the egress router selects between them](multilayer-wp-6-protection-switching.png)
 
 The ingress IP router duplicates the client traffic onto a Working MPLS LSP and a Protect MPLS LSP, which are mapped to Working and Protect optical LSPs respectively. During a normal mode of operation, the egress router drops the traffic flowing on the Protect MPLS LSP. If there is a failure of the Working optical LSP (either a loss of signal or optical degradation beyond a specified threshold of the underlying wavelength), the TN320 network signals the egress router to drop the Working MPLS LSP and switch to the traffic flowing on Protect MPLS LSP. For the TN320 solution, this 1+1 protection switching is consistently accomplished in sub-50 ms time frames.
 
@@ -161,7 +161,7 @@ Carriers can define the logical parameters that a lightpath (optical LSP) must m
 
 Figure 1 illustrates this concept of advanced multi-layer traffic engineering for network optimization, differentiating multiple kinds of traffic (video, data, and generic IP) and services (IPTV, Enterprise Data, and Internet) across integrated packet and optical layers with different protection schemes.
 
-![Figure 1: Advanced multi-layer traffic engineering: IP traffic unprotected, video 1+1 protected, and data on fast mesh re-route across the TN320 network](images/multilayer-wp-7-traffic-engineering.png)
+![Figure 1: Advanced multi-layer traffic engineering: IP traffic unprotected, video 1+1 protected, and data on fast mesh re-route across the TN320 network](multilayer-wp-7-traffic-engineering.png)
 
 Traffic is engineered such that high-priority traffic receives the highest level of protection, while other types of traffic receive lower levels of protection:
 
