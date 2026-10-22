@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1218 480" width="1218" height="480" role="img" aria-label="Conviva Android SDK video analytics lifecycle: app launch to app end, with the SDK calls reported at each stage" font-family="Roboto, Segoe UI, Arial, sans-serif">
+  <title>Conviva Android SDK video analytics lifecycle</title>
+  <desc>Timeline from App Launch through Hit Play, Video Plays, Video Ends and App Ends. Autocollected metrics are marked with an asterisk. Rows below show the SDK calls for events and metadata, user actions, fatal errors and custom playback events.</desc>
+  <defs>
+    <marker id="a-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2B8C9A"></path></marker>
+    <marker id="a-olive" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5E7F2A"></path></marker>
+    <marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D9651B"></path></marker>
+    <marker id="a-lav" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A9A0DC"></path></marker>
+    <marker id="a-sage" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B9C394"></path></marker>
+    <marker id="a-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E04A4A"></path></marker>
+    <marker id="a-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#C9A6E6"></path></marker>
+    <marker id="a-brown" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6B3A12"></path></marker>
+  </defs>
+
+  <rect width="1218" height="480" fill="#FFFFFF"></rect>
+
+  <!-- ===== Milestones ===== -->
+  <g font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <rect x="137" y="10" width="52" height="36" rx="5" fill="#2E8B83"></rect>
+    <text x="163" y="25">App</text><text x="163" y="38">Launch</text>
+    <rect x="355" y="10" width="52" height="36" rx="5" fill="#5E7F2A"></rect>
+    <text x="381" y="25">Hit</text><text x="381" y="38">Play</text>
+    <rect x="422" y="10" width="52" height="36" rx="5" fill="#1F4E79"></rect>
+    <text x="448" y="25">Video</text><text x="448" y="38">Plays</text>
+    <rect x="1007" y="8" width="52" height="38" rx="5" fill="#6B3A12"></rect>
+    <text x="1033" y="24">Video</text><text x="1033" y="38">Ends</text>
+    <rect x="1157" y="8" width="52" height="38" rx="5" fill="#2E8B83"></rect>
+    <text x="1183" y="24">App</text><text x="1183" y="38">Ends</text>
+  </g>
+
+  <text x="705" y="27" font-size="10.5" fill="#111">*Autocollected by the Module</text>
+
+  <!-- App launch path -->
+  <path d="M163 46V146H376" fill="none" stroke="#2B8C9A" stroke-width="1.5" marker-end="url(#a-teal)"></path>
+  <ellipse cx="185" cy="146" rx="4" ry="17" fill="#E6E9A6"></ellipse>
+  <text transform="translate(188 128) rotate(-60)" font-size="8" fill="#C2AE2A">Download Catalog</text>
+
+  <text x="25" y="148" font-size="9.5" font-weight="700" fill="#4A3B36">Download Conviva SDK and</text>
+  <text x="25" y="160" font-size="9.5" font-weight="700" fill="#4A3B36">ensure app can access it</text>
+
+  <!-- Init calls -->
+  <text x="238" y="52" font-size="8" fill="#1E9AA6">Initialize the top-level object</text>
+  <rect x="238" y="56" width="52" height="11" fill="#D6F4F7"></rect>
+  <text x="240" y="65" font-size="10" fill="#111">init()</text>
+  <text x="238" y="88" font-size="8" fill="#1E9A78">Initialize Conviva Objects for</text>
+  <text x="238" y="97" font-size="8" fill="#1E9A78">each video session before play</text>
+  <rect x="238" y="102" width="100" height="34" fill="#D5EFE4"></rect>
+  <g font-size="10" fill="#111">
+    <text x="240" y="112">buildVideoAnalytics()</text>
+    <text x="240" y="123">setContentInfo()</text>
+    <text x="240" y="134">setPlayerInfo()</text>
+  </g>
+
+  <!-- ===== Milestone stems ===== -->
+  <line x1="381" y1="46" x2="381" y2="137" stroke="#9A9A9A" stroke-width="2"></line>
+  <line x1="448" y1="46" x2="448" y2="146" stroke="#9A9A9A" stroke-width="2"></line>
+  <circle cx="448" cy="60" r="7" fill="#3CC8D8"></circle>
+  <circle cx="448" cy="86" r="7" fill="#C8DFA8"></circle>
+  <circle cx="448" cy="113" r="7" fill="#DCCBE3"></circle>
+  <line x1="1033" y1="46" x2="1033" y2="146" stroke="#9A9A9A" stroke-width="2"></line>
+  <line x1="1183" y1="46" x2="1183" y2="149" stroke="#2B8C9A" stroke-width="1.5"></line>
+  <path d="M1034 149H1181" fill="none" stroke="#2B8C9A" stroke-width="1.5" marker-end="url(#a-teal)"></path>
+
+  <!-- Release calls -->
+  <text x="1048" y="66" font-size="8" fill="#1E9A78">Release Conviva Objects</text>
+  <text x="1048" y="76" font-size="8" fill="#1E9A78">after video session ends</text>
+  <rect x="1047" y="80" width="117.7" height="12" fill="#E3F6F8"></rect>
+  <text x="1049" y="90" font-size="10" fill="#111">videoAnalytics.release()</text>
+  <text x="1048" y="109" font-size="8" fill="#1E9AA6">Release the top-level object when</text>
+  <text x="1048" y="119" font-size="8" fill="#1E9AA6">no video sessions are active</text>
+  <rect x="1047" y="123" width="130.3" height="12" fill="#E3F6F8"></rect>
+  <text x="1049" y="133" font-size="10" fill="#111">ConvivaAnalytics.release()</text>
+
+  <!-- ===== Playback bar ===== -->
+  <rect x="380" y="137" width="15" height="18" fill="#D9D9D9"></rect>
+  <rect x="395" y="137" width="52" height="18" fill="#5E7F2A"></rect>
+  <text x="421" y="149.5" font-size="8" font-weight="700" fill="#FFF" text-anchor="middle">Startup</text>
+  <rect x="447" y="137" width="586" height="18" fill="#9ACD32"></rect>
+  <rect x="513" y="137" width="38" height="18" fill="#C8651B"></rect>
+  <text x="532" y="149.5" font-size="8" font-weight="700" fill="#FFF" text-anchor="middle">Ad Pod</text>
+  <rect x="707" y="137" width="6" height="18" fill="#F2F0D6"></rect>
+  <rect x="756" y="137" width="22" height="18" fill="#5BC0D6"></rect>
+  <rect x="778" y="137" width="13" height="18" fill="#FF9A1A"></rect>
+  <rect x="958" y="137" width="17" height="18" fill="#5E9A9A"></rect>
+
+  <circle cx="448" cy="146" r="7" fill="#7FA0B0"></circle>
+  <ellipse cx="484" cy="146" rx="4" ry="16" fill="#C8C8C8"></ellipse>
+  <ellipse cx="499" cy="146" rx="4" ry="16" fill="#3CC8D8"></ellipse>
+  <ellipse cx="603" cy="146" rx="4" ry="16" fill="#6A6A6A"></ellipse>
+  <ellipse cx="659" cy="146" rx="4" ry="16" fill="#CC33CC"></ellipse>
+  <ellipse cx="687" cy="146" rx="4" ry="16" fill="#CC2E2E"></ellipse>
+  <ellipse cx="864" cy="146" rx="4" ry="16" fill="#CC2E2E"></ellipse>
+
+  <!-- Rotated event labels -->
+  <g font-size="8">
+    <text transform="translate(386 131) rotate(-60)" fill="#A8A8A8">Player</text>
+    <text transform="translate(395 131) rotate(-60)" fill="#A8A8A8">Initialization</text>
+    <text transform="translate(387 85) rotate(-60)" fill="#1EA4B4">Audio, Subtitles</text>
+    <text transform="translate(396 88) rotate(-60)" fill="#1EA4B4">CC Languages</text>
+    <text transform="translate(405 91) rotate(-60)" fill="#1EA4B4">Default Values*</text>
+    <text transform="translate(459 79) rotate(-60)" fill="#A8A8A8" font-size="7.5">Buffer Length, Frame</text>
+    <text transform="translate(468 82) rotate(-60)" fill="#A8A8A8" font-size="7.5">Rate, Play Head Time*</text>
+    <text transform="translate(458 113) rotate(-60)" fill="#B9A8C8">Bitrate*</text>
+    <text transform="translate(458 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+    <text transform="translate(490 128) rotate(-60)" fill="#A8A8A8">Dropped Frames Count*</text>
+    <text transform="translate(499 131) rotate(-60)" fill="#1EA4B4">Audio, Subtitles, CC Languages</text>
+    <text transform="translate(508 133) rotate(-60)" fill="#1EA4B4">Change on User Actions*</text>
+    <text transform="translate(572 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+    <text transform="translate(606 131) rotate(-60)" fill="#A8A8A8">CDN *</text>
+    <text transform="translate(625 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+    <text transform="translate(663 131) rotate(-60)" fill="#CC33CC">Custom Playback Events</text>
+    <text transform="translate(691 131) rotate(-60)" fill="#D93636">Fatal, Non-fatal Errors*</text>
+    <text transform="translate(714 131) rotate(-60)" fill="#C9C77A">User Actions</text>
+    <text transform="translate(738 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+    <text transform="translate(765 131) rotate(-60)" fill="#2FA8C8">Seek*</text>
+    <text transform="translate(786 131) rotate(-60)" fill="#F28C00">Buffering*</text>
+    <text transform="translate(823 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+    <text transform="translate(868 131) rotate(-60)" fill="#D93636">Fatal Error - Unrecoverable</text>
+    <text transform="translate(908 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+    <text transform="translate(965 131) rotate(-60)" fill="#7AA6A6">Paused Time*</text>
+    <text transform="translate(1003 134) rotate(-60)" fill="#6B8E23">Playing*</text>
+  </g>
+
+  <!-- ===== Row separators ===== -->
+  <g stroke="#CFCFCF" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="25" y1="237" x2="1185" y2="237"></line>
+    <line x1="25" y1="341" x2="1185" y2="341"></line>
+    <line x1="25" y1="424" x2="1185" y2="424"></line>
+  </g>
+
+  <!-- ===== Row labels ===== -->
+  <g font-size="9.5" font-weight="700" fill="#4A3B36">
+    <text x="25" y="221">Report Events/Metadata</text>
+    <text x="25" y="232">on <tspan font-style="italic" font-weight="400">videoAnalytics</tspan> Object</text>
+    <text x="25" y="263">Read Constants from</text>
+    <text x="25" y="273"><tspan font-style="italic" font-weight="400">Events</tspan></text>
+    <text x="25" y="284">Report User Actions on</text>
+    <text x="25" y="295"><tspan font-style="italic" font-weight="400">videoAnalytics</tspan> Object</text>
+    <text x="25" y="316">Report User Actions on</text>
+    <text x="25" y="327"><tspan font-style="italic" font-weight="400">ConvivaAnalytics</tspan> Object</text>
+    <text x="25" y="368">Report Unrecoverable</text>
+    <text x="25" y="379">Fatal Errors on</text>
+    <text x="25" y="390"><tspan font-style="italic" font-weight="400">videoAnalytics</tspan> Object</text>
+    <text x="25" y="438">Report Custom</text>
+    <text x="25" y="449">Playback Events on</text>
+    <text x="25" y="460"><tspan font-style="italic" font-weight="400">videoAnalytics</tspan> Object</text>
+  </g>
+
+  <!-- ===== Calls ===== -->
+  <!-- setPlayer / reportPlaybackRequested -->
+  <rect x="245.6" y="167" width="132.4" height="13" fill="#F3D9F0"></rect>
+  <text x="376.0" y="177.5" font-size="10" fill="#111" text-anchor="end">setPlayer(simpleExoPlayer)</text>
+  <text x="375" y="193" font-size="7.5" font-weight="700" fill="#111" text-anchor="end">Report at play</text>
+  <rect x="191.0" y="196" width="187.0" height="13" fill="#D5E8B8"></rect>
+  <text x="376.0" y="206.5" font-size="10" fill="#111" text-anchor="end">reportPlaybackRequested(contentInfo)</text>
+  <path d="M380 203V158" fill="none" stroke="#5E7F2A" stroke-width="1.3" marker-end="url(#a-olive)"></path>
+
+  <!-- Ad breaks -->
+  <text x="405" y="203" font-size="7.5" font-weight="700" fill="#111">Report at ad break start/end</text>
+  <rect x="397.4" y="206" width="114.6" height="13" fill="#F5DCC5"></rect>
+  <text x="510.0" y="216.5" font-size="10" fill="#111" text-anchor="end">reportAdBreakStarted()</text>
+  <rect x="437.8" y="220" width="110.2" height="13" fill="#F5DCC5"></rect>
+  <text x="546.0" y="230.5" font-size="10" fill="#111" text-anchor="end">reportAdBreakEnded()</text>
+  <path d="M512 210V186" fill="none" stroke="#D9651B" stroke-width="1.3" marker-end="url(#a-orange)"></path>
+  <path d="M548 224V186" fill="none" stroke="#D9651B" stroke-width="1.3" marker-end="url(#a-orange)"></path>
+
+  <!-- User wait events -->
+  <text x="195" y="255" font-size="7" font-weight="700" fill="#111">[Optional] Report on user dialogues like pin popup</text>
+  <rect x="163.3" y="260" width="214.7" height="13" fill="#DCD8F0"></rect>
+  <text x="376.0" y="270.5" font-size="10" fill="#111" text-anchor="end">reportPlaybackEvent(USER_WAIT_STARTED)</text>
+  <rect x="241.0" y="275" width="204.0" height="13" fill="#DCD8F0"></rect>
+  <text x="443.0" y="285.5" font-size="10" fill="#111" text-anchor="end">reportPlaybackEvent(USER_WAIT_ENDED)</text>
+  <path d="M380 266V249" fill="none" stroke="#A9A0DC" stroke-width="1.3" marker-end="url(#a-lav)"></path>
+  <path d="M447 281V249" fill="none" stroke="#A9A0DC" stroke-width="1.3" marker-end="url(#a-lav)"></path>
+
+  <!-- App background / foreground -->
+  <text x="628" y="303" font-size="7.5" font-weight="700" fill="#111">Report on user actions</text>
+  <text x="714" y="316" font-size="10" fill="#111" text-anchor="end">reportAppBackgrounded()</text>
+  <text x="720" y="329" font-size="10" fill="#111" text-anchor="end">reportAppForegrounded()</text>
+  <path d="M718 312V284" fill="none" stroke="#B9C394" stroke-width="1.3" marker-end="url(#a-sage)"></path>
+  <path d="M724 325V284" fill="none" stroke="#B9C394" stroke-width="1.3" marker-end="url(#a-sage)"></path>
+
+  <!-- Fatal errors -->
+  <text x="862" y="345" font-size="20" font-weight="700" fill="#E04A4A" text-anchor="middle">X</text>
+  <text x="873" y="352" font-size="8" font-weight="700" fill="#111">Session terminates on fatal errors</text>
+  <text x="752" y="374" font-size="7.5" font-weight="700" fill="#111">Report on unrecoverable error</text>
+  <rect x="625.4" y="378" width="236.6" height="13" fill="#F4B6B6"></rect>
+  <text x="860.0" y="388.5" font-size="10" fill="#111" text-anchor="end">reportPlaybackFailed(errorMessage, contentInfo)</text>
+  <path d="M864 384V356" fill="none" stroke="#E04A4A" stroke-width="1.3" marker-end="url(#a-red)"></path>
+  <rect x="735" y="392" width="117.7" height="12" fill="#DDF3F8"></rect>
+  <text x="737" y="402" font-size="10" fill="#111">videoAnalytics.release()</text>
+  <rect x="735" y="405" width="130.3" height="12" fill="#DDF3F8"></rect>
+  <text x="737" y="415" font-size="10" fill="#111">ConvivaAnalytics.release()</text>
+
+  <!-- Custom playback events -->
+  <rect x="444.9" y="446" width="217.1" height="14" fill="#EAD7F2"></rect>
+  <text x="660.0" y="457" font-size="10" fill="#111" text-anchor="end">reportPlaybackEvent(eventType, eventDetail)</text>
+  <path d="M662 452V429" fill="none" stroke="#C9A6E6" stroke-width="1.3" marker-end="url(#a-purple)"></path>
+
+  <!-- Playback ended -->
+  <text x="1028" y="172" font-size="7.5" font-weight="700" fill="#111" text-anchor="end">Report at play end</text>
+  <rect x="920.0" y="175" width="113.0" height="13" fill="#E8C8A0"></rect>
+  <text x="1031.0" y="185.5" font-size="10" fill="#111" text-anchor="end">reportPlaybackEnded()</text>
+  <path d="M1033 182V158" fill="none" stroke="#6B3A12" stroke-width="1.3" marker-end="url(#a-brown)"></path>
+</svg>
