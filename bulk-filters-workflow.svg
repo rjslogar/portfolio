@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200" role="img" aria-label="Bulk filter round-trip workflow: GET filters, save as JSON, edit in bulk, then POST new filters, PUT updates by id, or DELETE by id" font-family="Segoe UI, Roboto, Arial, sans-serif">
+  <title>Bulk filter round-trip workflow</title>
+  <defs>
+    <marker id="bf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5B6B7B"/></marker>
+  </defs>
+  <rect width="800" height="200" rx="8" fill="#FFFFFF"/>
+  <g fill="#EEF4FB" stroke="#2F6FAE" stroke-width="1.25">
+    <rect x="16" y="76" width="112" height="48" rx="8"/>
+    <rect x="152" y="76" width="112" height="48" rx="8"/>
+    <rect x="288" y="76" width="112" height="48" rx="8"/>
+    <polygon points="424,100 484,60 544,100 484,140"/>
+  </g>
+  <g fill="#FFFFFF" stroke="#2F6FAE" stroke-width="2">
+    <rect x="684" y="18" width="100" height="40" rx="8"/>
+    <rect x="684" y="80" width="100" height="40" rx="8"/>
+    <rect x="684" y="142" width="100" height="40" rx="8"/>
+  </g>
+  <g fill="none" stroke="#5B6B7B" stroke-width="1.5" marker-end="url(#bf-arrow)">
+    <path d="M129 100H150"/>
+    <path d="M265 100H286"/>
+    <path d="M401 100H422"/>
+    <path d="M545 100H584V38H682"/>
+    <path d="M545 100H682"/>
+    <path d="M584 100V162H682"/>
+  </g>
+  <g font-size="13" fill="#1A2B3C" text-anchor="middle">
+    <text x="72" y="104.5">GET filters</text>
+    <text x="208" y="104.5">Save as JSON</text>
+    <text x="344" y="104.5">Edit in bulk</text>
+    <text x="484" y="98">Change</text>
+    <text x="484" y="114">type</text>
+  </g>
+  <g font-size="13" font-weight="700" fill="#1F5BC4" text-anchor="middle" font-family="Consolas, Menlo, monospace">
+    <text x="734" y="42.5">POST</text>
+    <text x="734" y="104.5">PUT</text>
+    <text x="734" y="166.5">DELETE</text>
+  </g>
+  <g font-size="11.5" fill="#5B6B7B" text-anchor="middle">
+    <text x="633" y="31">New filters</text>
+    <text x="633" y="93">Update by id</text>
+    <text x="633" y="155">Remove by id</text>
+  </g>
+</svg>

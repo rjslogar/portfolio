@@ -26,14 +26,7 @@ The page opens by contrasting the platform with traditional observability. Those
 
 The sections follow the order the data actually moves through the platform, so each concept builds on the one before it:
 
-```mermaid
-flowchart LR
-    A[Client-side<br/>telemetry] --> B[Stateful metrics &<br/>server-side sessionization]
-    B --> C[Hypercube engine<br/>multi-dimensional analysis]
-    C --> D[Standard &<br/>custom metrics]
-    D --> E[Explainable<br/>AI alerts]
-    E --> F[Connect APIs &<br/>data feeds]
-```
+![Data path through the platform: client-side telemetry, stateful metrics and server-side sessionization, Hypercube engine, standard and custom metrics, explainable AI alerts, Connect APIs and data feeds](digital-intelligence-data-path.svg)
 
 | Section | Reader question it answers | How it's shown |
 | --- | --- | --- |

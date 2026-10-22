@@ -36,15 +36,7 @@ Instead of a flat endpoint reference, the guide is built around what administrat
 
 Every write operation starts from a read. Readers export existing filters, edit the JSON, and send it back, so they always work from the real current state:
 
-```mermaid
-flowchart LR
-    A[GET filters] --> B[Save as JSON]
-    B --> C[Edit in bulk]
-    C --> D{Change type}
-    D -->|New filters| E[POST]
-    D -->|Update by id| F[PUT]
-    D -->|Remove by id| G[DELETE]
-```
+![Bulk filter round-trip workflow: GET filters, save as JSON, edit in bulk, then POST new filters, PUT updates by id, or DELETE by id](bulk-filters-workflow.svg)
 
 The guide also covers how `PUT` behaves: it merges new values into the existing filter instead of replacing it. That one detail prevents accidental data loss.
 
