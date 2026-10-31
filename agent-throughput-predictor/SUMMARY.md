@@ -1,4 +1,4 @@
-# Agent Throughput Predictor: Applying Basic Machine Learning
+# Agent Throughput Predictor: Summary
 
 **TL;DR:** A PyTorch neural network that predicts how fast AI agents generate output from six workload inputs, validated on 1,000 unseen sessions, with documentation layered for different readers.
 

@@ -1,4 +1,4 @@
-# Agent Throughput Predictor: Applying Basic Machine Learning
+# Agent Throughput Predictor: README
 
 **TL;DR:** How to set up and run a PyTorch notebook that predicts AI agent throughput, simulate and compare workloads, check the model's validation results, tune its training, and fix common problems.
 
