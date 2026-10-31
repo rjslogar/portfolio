@@ -2,13 +2,26 @@
 
 **Rich Slogar**
 
-Samples of my work across product strategy, developer documentation, product documentation, and technical marketing content. Each sample opens as its own page, with a short note on its audience, purpose, and my role.
+Samples of my work across product strategy, AI and machine learning documentation, developer documentation, product documentation, and technical marketing content. Each sample opens as its own page, with a short note on its audience, purpose, and my role.
 
 ## Product Strategy
 
 ### [PLG Strategy for an Emerging Analytics Enterprise](plg-strategy-emerging-enterprise.docx)
 
 A product-led growth strategy for an analytics provider squeezed between free tools and high-priced incumbents. It covers market positioning, counter-positioning against each competitor class, the activation and PQL design, a funnel-to-ARR model, and a 24-week execution plan with a go/no-go gate. *Capstone analysis, 2026 (Word document).*
+
+## AI and Machine Learning Documentation
+
+### [Agent Throughput Predictor: Applying Basic Machine Learning](agent-throughput-predictor/SUMMARY.md)
+
+A PyTorch project that predicts how fast AI agents generate output, in tokens per second, from six workload inputs, and checks each prediction against a speed target to support capacity planning. The model is validated on 1,000 unseen sessions, and the documentation is layered by audience, from a one-page overview to a user guide and technical notes. I defined the project scope, refined the workload inputs and training settings, reproduced the results, and wrote and revised the documentation, developing the project in collaboration with Anthropic's Claude AI assistant. *2026 (Python notebook and Markdown).*
+
+- [Summary](agent-throughput-predictor/SUMMARY.md): project overview for general readers
+- [README](agent-throughput-predictor/README.md): user guide to set up, run and tune the model
+- [Technical notes](agent-throughput-predictor/TECHNICAL_NOTES.md): model design, code reference, glossary and detailed test results
+- [Notebook](agent-throughput-predictor/agent_throughput_predictor.ipynb): the working code, with outputs from a complete run
+
+<a href="agent-throughput-predictor/SUMMARY.md"><img src="agent-throughput-predictor/images/capacity_planning.png" alt="Line chart of predicted tokens per second per agent as concurrent agents increase, for small, medium and large hardware, with a 20 tokens/sec target line" width="600"></a>
 
 ## Developer Documentation
 
@@ -30,7 +43,7 @@ A case study of an overview page that explains a real-time analytics platform, f
 
 ### [Feature Context Page](feature-context-page.svg)
 
-A documentation page design that combines several learning modes in one place to enhance both human and agent content discoverability and comprehension: overview text, platform summary diagrams, a demo video, current release notes, and a Feature Focus panel of use cases. 
+A documentation page design that combines several learning modes in one place: overview text, platform summary diagrams, a demo video, current release notes, and a Feature Focus panel of use cases.
 
 <a href="feature-context-page.svg"><img src="feature-context-page.svg" alt="Feature context documentation page" width="600"></a>
 
