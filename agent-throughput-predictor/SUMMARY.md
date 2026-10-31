@@ -11,7 +11,6 @@
 ## At a glance
 
 | | |
-| --- | --- |
 | **Problem** | AI agents slow down as they share hardware and take on longer, more complex work. Teams need to know in advance whether agents will meet their speed target |
 | **What I built** | A PyTorch neural network that predicts an agent's tokens per second from six workload inputs, and a tool that checks each prediction against a 20 tokens/sec target |
 | **Workload features** | Context length, tool calls, sub-agents, concurrent agents, cache hit rate and hardware tier |
