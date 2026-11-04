@@ -1,7 +1,5 @@
 # Technical Writing & Product Strategy Portfolio
 
-**Rich Slogar**
-
 Samples of my work across product strategy, AI and machine learning documentation, developer documentation, product documentation, and technical marketing content. Each sample opens as its own page, with a short note on its audience, purpose, and my role.
 
 ## Product Strategy
