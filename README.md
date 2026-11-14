@@ -4,9 +4,9 @@ Samples of my work across product strategy, AI and machine learning documentatio
 
 ## Product Strategy
 
-### [PLG Strategy for an Emerging Analytics Enterprise](plg-strategy-emerging-enterprise.docx)
+### [PLG Strategy for an Emerging Analytics Enterprise](plg-strategy-emerging-enterprise.md)
 
-A product-led growth strategy for an analytics provider squeezed between free tools and high-priced incumbents. It covers market positioning, counter-positioning against each competitor class, the activation and PQL design, a funnel-to-ARR model, and a 24-week execution plan with a go/no-go gate. *Capstone analysis, 2026 (Word document).*
+A product-led growth strategy for an analytics provider squeezed between free tools and high-priced incumbents. It covers market positioning, counter-positioning against each competitor class, the activation and PQL design, a funnel-to-ARR model, and a 24-week execution plan with a go/no-go gate. *Capstone analysis, 2026.* Also available as a [Word document](plg-strategy-emerging-enterprise.docx).
 
 ## AI and Machine Learning Documentation
 

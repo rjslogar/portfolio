@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLG Strategy for an Emerging Analytics Enterprise</title>
+<meta name="description" content="A product-led growth strategy for an emerging analytics provider squeezed between free tools and high-priced incumbents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---- tokens ---------------------------------------------------- */
+:root {
+  --paper: #f5f6f4;
+  --ink: #1a2129;
+  --slate: #5b6672;
+  --rule: #d9ddda;
+  --verify: #0e6e5c;      /* accent: verification green */
+  --verify-soft: #e3efec;
+  --max: 70rem;
+  --measure: 44rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper:#151a1e; --ink:#e8eae7; --slate:#98a2ab; --rule:#2b3238; --verify:#4fb39d; --verify-soft:#1d2f2b; }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1.0625rem/1.65 "Public Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--verify); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--verify); outline-offset: 3px; }
+
+/* ---- type roles ------------------------------------------------- */
+h1, h2, h3, .display { font-family: "Newsreader", Georgia, serif; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+.mono, .eyebrow, nav, .meta, footer { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+
+/* ---- shell ------------------------------------------------------ */
+.shell { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+header.site { border-bottom: 1px solid var(--rule); }
+header.site .shell { display: flex; justify-content: space-between; align-items: baseline; padding-top: 1.1rem; padding-bottom: 1.1rem; gap: 1rem; flex-wrap: wrap; }
+header.site .wordmark { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+nav a { font-size: 0.78rem; color: var(--slate); text-decoration: none; margin-left: 1.4rem; }
+nav a:hover, nav a[aria-current="page"] { color: var(--verify); }
+
+/* ---- landing hero ----------------------------------------------- */
+.hero { padding: 5rem 0 3.5rem; }
+.hero h1 { font-size: clamp(2.1rem, 5.5vw, 3.6rem); margin: 0 0 1.4rem; max-width: 22ch; }
+.hero h1 em { font-style: italic; color: var(--verify); }
+.hero p.lede { max-width: var(--measure); color: var(--slate); font-size: 1.125rem; margin: 0; }
+
+/* ---- pipeline cards --------------------------------------------- */
+.pipeline { padding-bottom: 4.5rem; }
+.card {
+  display: block; border-top: 1px solid var(--rule); padding: 2rem 0 2.2rem;
+  text-decoration: none; color: inherit; position: relative;
+}
+.card:last-child { border-bottom: 1px solid var(--rule); }
+.card .eyebrow .n { color: var(--verify); }
+.card h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin: 0.5rem 0 0.6rem; }
+.card p.thesis { max-width: var(--measure); margin: 0 0 0.9rem; color: var(--ink); }
+.card .meta { font-size: 0.72rem; color: var(--slate); }
+.card .go { position: absolute; right: 0; top: 2.1rem; font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--verify); transition: transform 0.15s ease; }
+.card:hover .go { transform: translateX(4px); }
+.card:hover h2 { color: var(--verify); }
+
+/* ---- article (brief pages) -------------------------------------- */
+article { max-width: var(--measure); margin: 0 auto; padding: 3.5rem 0 4rem; }
+article h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); margin: 0.4rem 0 1rem; }
+article h2 { font-size: 1.35rem; margin: 2.4rem 0 0.7rem; }
+article p, article li { color: var(--ink); }
+article strong { font-weight: 600; }
+article hr { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
+article em { color: inherit; }
+article img { display: block; max-width: 100%; height: auto; margin: 1.6rem 0; border: 1px solid var(--rule); border-radius: 6px; background: #ffffff; }
+article table { width: 100%; border-collapse: collapse; margin: 1.4rem 0 1.6rem; font-size: 0.95rem; }
+article th, article td { text-align: left; vertical-align: top; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--rule); }
+article thead th { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); border-bottom: 2px solid var(--ink); }
+article td:first-child { width: 34%; }
+@media (max-width: 40rem) { article th, article td { padding: 0.5rem 0.4rem; } article td:first-child { width: auto; } }
+article > p:first-of-type strong { font-family: "Newsreader", Georgia, serif; font-weight: 500; font-size: 1.2rem; line-height: 1.4; }
+.sibling {
+  margin: 2rem auto 0; max-width: var(--measure);
+  background: var(--verify-soft); border-left: 3px solid var(--verify);
+  padding: 0.8rem 1rem; font-size: 0.78rem; color: var(--slate);
+}
+.sibling a { color: var(--verify); }
+
+/* ---- about ------------------------------------------------------ */
+.prose { max-width: var(--measure); margin: 0 auto; padding: 3.5rem 0 4rem; }
+.prose h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); }
+
+/* ---- footer ----------------------------------------------------- */
+footer.site { border-top: 1px solid var(--rule); }
+footer.site .shell { padding: 1.6rem 1.25rem 2.2rem; font-size: 0.72rem; color: var(--slate); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+footer.site a { color: var(--slate); }
+footer.site a:hover { color: var(--verify); }
+
+@media (max-width: 40rem) {
+  .hero { padding: 3rem 0 2.2rem; }
+  .card .go { position: static; display: inline-block; margin-top: 0.6rem; }
+}
+
+</style>
+</head>
+<body>
+<main class="shell">
+<article>
+<p class="eyebrow">Product strategy · Capstone analysis</p>
+<h1>PLG Strategy for an Emerging Analytics Enterprise</h1>
+<p><em>Capstone analysis, Product-Led Growth MBA Certificate, 2026</em></p>
+<p><strong>Hypothesis: an emerging enterprise analytics provider can win the under-served middle market by selling what free tools can’t give — quantified business and revenue impact, compliance, and benchmarks — and by growing in targeted segments that incumbents can’t serve profitably.</strong></p>
+<p><em>Figures marked illustrative are my assumptions, not company data. Typical conversion-rate benchmarks are industry norms. Competitor prices are approximate (2026) and come from third-party sources.</em></p>
+<h2>Strategic context: the squeeze</h2>
+<p>The enterprise analytics market’s historical core is commoditized — a red ocean with free tools at the low end and mature, over-featured incumbents at the high end. Core session analytics now has a &#36;0 price anchor. Microsoft Clarity is free, and both enterprise leaders offer free entry points too: Contentsquare through Hotjar, and FullStory through its free plan. Above free, self-serve tiers cost a few hundred to a few thousand dollars a year. FullStory’s paid plans start at roughly &#36;10K a year, and enterprise contracts run &#36;80K–&#36;200K+.</p>
+<p><strong>Price ladder (approximate, 2026)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Examples</th>
+<th>Approx. annual price</th>
+<th>What’s missing for mid-market</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free</td>
+<td>Clarity, Hotjar Basic, FullStory Free</td>
+<td>&#36;0</td>
+<td>Impact quantification, compliance commitments, support</td>
+</tr>
+<tr>
+<td>Self-serve paid</td>
+<td>Hotjar Plus–Scale, Contentsquare Growth</td>
+<td>~&#36;400–&#36;2,600</td>
+<td>Still descriptive; same gaps</td>
+</tr>
+<tr>
+<td>Mid contract</td>
+<td>FullStory Business/Advanced</td>
+<td>~&#36;10K–&#36;70K</td>
+<td>Needs analyst time; compliance varies</td>
+</tr>
+<tr>
+<td>Enterprise</td>
+<td>Contentsquare and FullStory Enterprise</td>
+<td>~&#36;80K–&#36;200K+</td>
+<td>Priced and staffed beyond mid-market</td>
+</tr>
+</tbody>
+</table>
+<p>A mid-market buyer can get replay and heatmaps anywhere; what they can’t get at mid-market price is:</p>
+<ol>
+<li><strong>Proof of revenue impact.</strong> Free and low tiers show <em>what</em> happened, not what it <em>cost</em>.</li>
+<li><strong>Compliance assurances.</strong> BAAs, data residency, PII controls, and accountable support.</li>
+<li><strong>Analyst capacity.</strong> Enterprise tools assume a team to run them, while the mid-market buyer has one PM or marketer.</li>
+</ol>
+<p><strong>The business challenge:</strong> an emerging provider can’t charge for features that free tools give away, and it can’t match incumbents’ breadth or sales reach. It can charge only for outcomes and assurances that are missing below about &#36;10K or bundled into &#36;80K+ contracts.</p>
+<p>This strategy applies PLG to two strategic questions: which outcomes will buyers pay for that free tools can’t deliver, and which moats can protect this business growth?</p>
+<h2>Where to play</h2>
+<p>The target is the structurally underserved middle: mid-market and light-enterprise buyers who need more than free tiers provide but won’t sign enterprise-sized contracts.</p>
+<p><strong>Beachhead verticals</strong> are where impact is measurable and free tools are disqualified:</p>
+<ul>
+<li><strong>Mid-market e-commerce</strong> — revenue impact is directly measurable, and the session volume is large enough to seed benchmarks.</li>
+<li><strong>Compliance-constrained verticals</strong> — healthcare, finance, legal, and EU-regulated businesses, where privacy assurances decide the purchase.</li>
+</ul>
+<p><strong>Where not to play:</strong> feature races, price wars against free and enterprise deals outside the wedge.</p>
+<p><strong>Scope of discovery:</strong> test two verticals at once (e-commerce plus one regulated vertical) so founder-led interviews stay feasible.</p>
+<h2>How to win</h2>
+<p>We win by counter-positioning: each competitor class would have to damage its own model to compete.</p>
+<table>
+<thead>
+<tr>
+<th>Competitor class</th>
+<th>What they can’t easily do</th>
+<th>Our position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free tools (Clarity)</td>
+<td>Offer compliance, accountable support, or quantified impact without breaking “free”</td>
+<td>Paid tier justified by outcomes and compliance</td>
+</tr>
+<tr>
+<td>Enterprise vendors with down-market arms (Contentsquare/Hotjar, FullStory)</td>
+<td>Unbundle compliance and impact into low tiers without cannibalizing their enterprise upsell</td>
+<td>Enterprise-grade assurances and outcomes at mid-market price</td>
+</tr>
+<tr>
+<td>Horizontal paid vendors</td>
+<td>Go narrow and deep without abandoning breadth</td>
+<td>Vertical depth: benchmarks and workflows per segment</td>
+</tr>
+</tbody>
+</table>
+<h2>Offer discovery and moats</h2>
+<p>The irresistible offer is discovered, not assumed. Founders run 30–40 interviews per vertical across two verticals (60–80 total) in weeks 1–8. Prioritize prospects who left a paid tool for a free one and confirm willingness to pay through pricing tests. Each candidate offer is then filtered for business fit and moat protection.</p>
+<p><strong>Candidate offers, in hypothesized priority order (validated weeks 1–8):</strong></p>
+<ol>
+<li><strong>Quantified revenue impact</strong> — form and funnel analytics that price each friction point (“this field costs &#36;12k/month”). The clearest reason to pay over free.</li>
+<li><strong>Compliance package</strong> — a fixed cost that amortizes across verticals. Controls (PII masking, data residency, DPA and BAA templates) ship day one; formal certifications follow (see Execution).</li>
+<li><strong>Benchmark intelligence</strong> — near-zero marginal cost once the customer base grows, and it compounds with every contributing customer.</li>
+<li><strong>Workflow embedding</strong> — findings pushed to Jira or Linear with tracked recovery, which creates switching costs.</li>
+</ol>
+<p><strong>Benchmark guardrails.</strong> Benchmarks must strengthen our privacy positioning, not contradict it:</p>
+<ul>
+<li>Aggregated, de-identified metrics only; raw session data never leaves a customer’s account.</li>
+<li>Contractual opt-in; regulated customers are excluded unless they explicitly opt in.</li>
+<li>A minimum cohort size per benchmark (illustrative: 10+ contributing customers) so no customer is identifiable.</li>
+<li>Launch in e-commerce first, where session volume is largest. Until cohorts reach minimum size, seed with public industry data, so benchmarks ship later than the other offers.</li>
+</ul>
+<p>The moat is a consented, metadata-rich corpus that a free tool cannot assemble quickly.</p>
+<h2>Product-led motion</h2>
+<p><strong>Reverse trial.</strong> New signups get 14 days of the full product, then drop to a scoped free tier. There is no expiration date pushing them to defect.</p>
+<p><strong>Activation event (the aha moment).</strong> The first quantified-loss finding on a live form or funnel step — a dollar figure free tools can’t produce — within 5 minutes of install.</p>
+<p><strong>PQL triggers</strong> that start an upgrade prompt or a sales-assist touch:</p>
+<ul>
+<li>Three or more quantified findings viewed in 7 days, plus a teammate invited.</li>
+<li>A finding pushed to Jira or another workflow tool.</li>
+<li>Hitting a free-tier limit on benchmarks or compliance features after the trial ends.</li>
+<li>Enterprise signal: five or more users from one company domain, or a DPA/BAA request.</li>
+</ul>
+<p><strong>Growth loops:</strong></p>
+<ul>
+<li><strong>Workflow loop</strong> — findings pushed to Jira bring engineers into the product to track recovery.</li>
+<li><strong>Report loop</strong> — shared revenue-impact and benchmark reports reach managers and executives, who sign up to see more.</li>
+<li><strong>Benchmark loop</strong> — every new contributing customer makes benchmarks more valuable.</li>
+</ul>
+<p><strong>Self-serve to sales-assist handoff:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Motion</th>
+<th>Who</th>
+<th>ACV</th>
+<th>How they buy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self-serve</td>
+<td>SMB and small mid-market</td>
+<td>&#36;1k–&#36;5k</td>
+<td>Zero-touch upgrade at a PQL moment</td>
+</tr>
+<tr>
+<td>Sales-assist</td>
+<td>Mid-market and light enterprise flagged by PQL score and firmographics</td>
+<td>&#36;50k–&#36;100k land</td>
+<td>Rep engages the active account; compliance package closes it</td>
+</tr>
+<tr>
+<td>Expansion</td>
+<td>Landed accounts</td>
+<td>Up to &#36;250k</td>
+<td>More seats, teams, and verticals; benchmarks and impact add-ons</td>
+</tr>
+</tbody>
+</table>
+<p>The self-serve band overlaps Hotjar’s paid tiers; buyers choose this for quantified impact, which those tiers don’t provide. The sales-assist land overlaps FullStory’s upper tiers; compliance assurances win those deals.</p>
+<p>Pricing scales with quantified impact, benchmarks, and seats, not sessions alone.</p>
+<h2>Business case</h2>
+<p>At month 12, the targets roughly double new self-serve ARR — from about &#36;250k to &#36;485k a month (illustrative) — with gross margin held as a first-class KPI.</p>
+<p><strong>Funnel targets</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Current</th>
+<th>12-month target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visitor → signup</td>
+<td>10%</td>
+<td>12–15%</td>
+</tr>
+<tr>
+<td>Activation (first quantified-loss finding)</td>
+<td>40%</td>
+<td>55–60%</td>
+</tr>
+<tr>
+<td>Signup → paid</td>
+<td>10% (trial)</td>
+<td>12–15%</td>
+</tr>
+<tr>
+<td>Net revenue retention</td>
+<td>~100% (illustrative)</td>
+<td>110%+</td>
+</tr>
+<tr>
+<td>Churn to free tools</td>
+<td>Baseline (to be measured)</td>
+<td>–30%</td>
+</tr>
+<tr>
+<td>Vertical enterprise deals</td>
+<td>0</td>
+<td>15–25</td>
+</tr>
+<tr>
+<td>Gross margin</td>
+<td>[current]%</td>
+<td>Hold at or above [target]%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Funnel-to-ARR model (illustrative).</strong> Assumes 10,000 monthly visitors, &#36;2,500 average self-serve ACV, and 25% of activated users converting to paid. That rate stays constant, so gains come from signup and activation.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Current</th>
+<th>Month 12 (midpoint targets)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monthly visitors</td>
+<td>10,000</td>
+<td>10,000</td>
+</tr>
+<tr>
+<td>Signups</td>
+<td>1,000 (10%)</td>
+<td>1,350 (13.5%)</td>
+</tr>
+<tr>
+<td>Activated</td>
+<td>400 (40%)</td>
+<td>776 (57.5%)</td>
+</tr>
+<tr>
+<td>New paid accounts</td>
+<td>100</td>
+<td>194 (14.4% of signups)</td>
+</tr>
+<tr>
+<td>New self-serve ARR per month</td>
+<td>&#36;250k</td>
+<td>&#36;485k</td>
+</tr>
+<tr>
+<td>Enterprise ARR (20 deals × &#36;75k average land)</td>
+<td>—</td>
+<td>&#36;1.5M per year</td>
+</tr>
+</tbody>
+</table>
+<p>The self-serve gain comes mostly from activation: the reverse trial and the five-minute aha moment do more than top-of-funnel traffic.</p>
+<h2>Execution</h2>
+<p><strong>One gate at week 8 decides whether the plan scales.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Weeks</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discover</td>
+<td>1–8</td>
+<td>60–80 interviews; pricing tests; ship compliance controls; start certifications</td>
+</tr>
+<tr>
+<td>Build and launch</td>
+<td>9–14</td>
+<td>Build the top-fit offer; launch the reverse trial; tune the funnel to the validated offer</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>15–20</td>
+<td>Scale the winning vertical; productize benchmarks; deepen Jira and partnership moats</td>
+</tr>
+<tr>
+<td>Generalize</td>
+<td>21–24</td>
+<td>Enter adjacent verticals, reusing compliance, benchmarks, and workflows</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Week 8 gate:</strong> a vertical must clear willingness to pay and business fit. If no vertical clears it, pivot the core business.</p>
+<p>Compliance controls ship in phase one; formal certifications (SOC 2 Type II, HIPAA readiness) are expected around months 6–9 (illustrative).</p>
+<h2>Organization</h2>
+<ul>
+<li><strong>Growth pods</strong> — cross-functional, each owning one funnel metric end to end.</li>
+<li><strong>Discovery pod</strong> — owns the business-fit scorecard and the week-8 gate decision.</li>
+<li><strong>Weekly exec alignment</strong> — findings, moat progress, and margin.</li>
+<li><strong>Monthly all-hands</strong> — evidence and moat milestones.</li>
+</ul>
+<h2>Success criteria at month 12</h2>
+<ul>
+<li>One vertical where we stand out as the clear mid-market choice: 15+ enterprise deals and NRR of 110% or higher.</li>
+<li>Activation at 55% or higher, with time to first quantified-loss finding under 5 minutes.</li>
+<li>Churn to free tools down 30% from baseline.</li>
+<li>Benchmarks live in at least one vertical, meeting the minimum cohort size.</li>
+<li>Gross margin holds at or above target while ARR grows.</li>
+</ul>
+<h2>Sources</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://usercall.co/post/hotjar-pricing">Hotjar Pricing 2026: Plans, Features, and Contentsquare Changes (Usercall)</a></li>
+<li><a target="_blank" rel="noopener" href="https://getspike.ai/blog/fullstory-pricing">FullStory Pricing in 2026: Actual Costs, Hidden Fees (Spike)</a></li>
+</ul>
+</article>
+</main>
+</body>
+</html>
