@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading an Image Like a Sentence: What Transformers Bring to Real-Time Object Detection</title>
+<meta name="description" content="Independent analysis of RF-DETR's published benchmarks: what transformers bring to real-time object detection, and what an accuracy score does and doesn't tell you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---- tokens ---------------------------------------------------- */
+:root {
+  --paper: #f5f6f4;
+  --ink: #1a2129;
+  --slate: #5b6672;
+  --rule: #d9ddda;
+  --verify: #0e6e5c;      /* accent: verification green */
+  --verify-soft: #e3efec;
+  --max: 70rem;
+  --measure: 44rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper:#151a1e; --ink:#e8eae7; --slate:#98a2ab; --rule:#2b3238; --verify:#4fb39d; --verify-soft:#1d2f2b; }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1.0625rem/1.65 "Public Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--verify); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--verify); outline-offset: 3px; }
+
+/* ---- type roles ------------------------------------------------- */
+h1, h2, h3, .display { font-family: "Newsreader", Georgia, serif; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+.mono, .eyebrow, nav, .meta, footer { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate); }
+
+/* ---- shell ------------------------------------------------------ */
+.shell { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+header.site { border-bottom: 1px solid var(--rule); }
+header.site .shell { display: flex; justify-content: space-between; align-items: baseline; padding-top: 1.1rem; padding-bottom: 1.1rem; gap: 1rem; flex-wrap: wrap; }
+header.site .wordmark { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+nav a { font-size: 0.78rem; color: var(--slate); text-decoration: none; margin-left: 1.4rem; }
+nav a:hover, nav a[aria-current="page"] { color: var(--verify); }
+
+/* ---- landing hero ----------------------------------------------- */
+.hero { padding: 5rem 0 3.5rem; }
+.hero h1 { font-size: clamp(2.1rem, 5.5vw, 3.6rem); margin: 0 0 1.4rem; max-width: 22ch; }
+.hero h1 em { font-style: italic; color: var(--verify); }
+.hero p.lede { max-width: var(--measure); color: var(--slate); font-size: 1.125rem; margin: 0; }
+
+/* ---- pipeline cards --------------------------------------------- */
+.pipeline { padding-bottom: 4.5rem; }
+.card {
+  display: block; border-top: 1px solid var(--rule); padding: 2rem 0 2.2rem;
+  text-decoration: none; color: inherit; position: relative;
+}
+.card:last-child { border-bottom: 1px solid var(--rule); }
+.card .eyebrow .n { color: var(--verify); }
+.card h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin: 0.5rem 0 0.6rem; }
+.card p.thesis { max-width: var(--measure); margin: 0 0 0.9rem; color: var(--ink); }
+.card .meta { font-size: 0.72rem; color: var(--slate); }
+.card .go { position: absolute; right: 0; top: 2.1rem; font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--verify); transition: transform 0.15s ease; }
+.card:hover .go { transform: translateX(4px); }
+.card:hover h2 { color: var(--verify); }
+
+/* ---- article (brief pages) -------------------------------------- */
+article { max-width: var(--measure); margin: 0 auto; padding: 3.5rem 0 4rem; }
+article h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); margin: 0.4rem 0 1rem; }
+article h2 { font-size: 1.35rem; margin: 2.4rem 0 0.7rem; }
+article p, article li { color: var(--ink); }
+article strong { font-weight: 600; }
+article hr { border: 0; border-top: 1px solid var(--rule); margin: 2.2rem 0; }
+article em { color: inherit; }
+article img { display: block; max-width: 100%; height: auto; margin: 1.6rem 0; border: 1px solid var(--rule); border-radius: 6px; background: #ffffff; }
+article table { width: 100%; border-collapse: collapse; margin: 1.4rem 0 1.6rem; font-size: 0.95rem; }
+article th, article td { text-align: left; vertical-align: top; padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--rule); }
+article thead th { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--slate); border-bottom: 2px solid var(--ink); }
+article td:first-child { width: 34%; }
+@media (max-width: 40rem) { article th, article td { padding: 0.5rem 0.4rem; } article td:first-child { width: auto; } }
+article > p:first-of-type strong { font-family: "Newsreader", Georgia, serif; font-weight: 500; font-size: 1.2rem; line-height: 1.4; }
+.sibling {
+  margin: 2rem auto 0; max-width: var(--measure);
+  background: var(--verify-soft); border-left: 3px solid var(--verify);
+  padding: 0.8rem 1rem; font-size: 0.78rem; color: var(--slate);
+}
+.sibling a { color: var(--verify); }
+
+/* ---- about ------------------------------------------------------ */
+.prose { max-width: var(--measure); margin: 0 auto; padding: 3.5rem 0 4rem; }
+.prose h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); }
+
+/* ---- footer ----------------------------------------------------- */
+footer.site { border-top: 1px solid var(--rule); }
+footer.site .shell { padding: 1.6rem 1.25rem 2.2rem; font-size: 0.72rem; color: var(--slate); display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; justify-content: space-between; }
+footer.site a { color: var(--slate); }
+footer.site a:hover { color: var(--verify); }
+
+@media (max-width: 40rem) {
+  .hero { padding: 3rem 0 2.2rem; }
+  .card .go { position: static; display: inline-block; margin-top: 0.6rem; }
+}
+
+</style>
+</head>
+<body>
+<main class="shell">
+<article>
+<p class="eyebrow">Writing sample</p>
+<h1>Reading an Image Like a Sentence: What Transformers Bring to Real-Time Object Detection</h1>
+<p><em>Independent analysis of publicly published RF-DETR benchmarks.</em></p>
+<p>If you&rsquo;ve used an AI chatbot, you&rsquo;ve seen a transformer at work. The same idea that lets a language model understand a sentence is now helping computers find objects in images, and Roboflow&rsquo;s RF-DETR is one of the clearest examples. Here&rsquo;s what changes when object detection borrows from language models, and where the older approach still holds some ground.</p>
+<h2>How YOLO sees an image</h2>
+<p>For years, the standard for real-time object detection has been the YOLO family. YOLO models are built on convolutional neural networks, which scan an image in small, overlapping windows and build up from edges to shapes to whole objects. That&rsquo;s fast and efficient, but each part of the image mostly learns from its neighbors. YOLO models also tend to propose several overlapping boxes for the same object, so they run a clean-up step called non-maximum suppression to keep the best one.</p>
+<h2>Reading an image like a sentence</h2>
+<p>A transformer&rsquo;s core idea is attention: every piece of the input weighs how relevant every other piece is, so each detail is understood in the context of the whole. In a language model, that&rsquo;s how &ldquo;bank&rdquo; means one thing in &ldquo;river bank&rdquo; and another in &ldquo;bank account.&rdquo; RF-DETR applies the same attention to images. It cuts each image into small patches and treats them like the words of a sentence, so every patch can draw on context from anywhere in the picture. In Roboflow&rsquo;s words, &ldquo;a detection in the bottom-left corner can be informed by context from the top-right.&rdquo;</p>
+<p>This approach offers two practical effects. Roboflow reports fewer false positives in cluttered scenes, and the model outputs one prediction per object, so it skips the clean-up step entirely.</p>
+<h2>Learning before it sees your data</h2>
+<p>Language models learn from huge amounts of text before anyone fine-tunes them. RF-DETR&rsquo;s image backbone, called DINOv2, was trained the same way on a very large set of unlabeled internet images. It starts with a broad sense of what things look like, which matters when a customer trains it on something unusual, like weld defects or aerial crop rows.</p>
+<p>Roboflow&rsquo;s RF100-VL benchmark tests exactly this image diversity, averaging results across 100 datasets from fields such as aerial, X-ray and industrial imaging. RF-DETR-L scores 62.2 AP there, a measure of how often its boxes land in the right place with the right label.</p>
+<h2>Does it pay off?</h2>
+<p>On COCO, the standard benchmark of everyday photos, RF-DETR-L scores 56.5 AP at 6.8 milliseconds per image, against 50.9 AP at 10.5 milliseconds for YOLO11-X: more accurate and faster. Roboflow measured both on the same hardware and settings (an NVIDIA T4 GPU, one image at a time), with the clean-up step counted in YOLO&rsquo;s time, which Roboflow notes many published YOLO speeds leave out.</p>
+<h2>What an accuracy score does and doesn&rsquo;t tell you</h2>
+<p>Average Precision (AP) packs a lot into one number. It combines two questions: <strong>precision</strong> (of the boxes the model drew, how many were correct) and <strong>recall</strong> (of the objects actually in the image, how many were correctly found). It also checks how tightly each box fits. COCO&rsquo;s version averages results across stricter and stricter fit requirements, from boxes that overlap the real object by half to near-perfect matches. So 56.5 against 50.9 means RF-DETR finds more objects, makes fewer false calls and draws tighter boxes, on average across COCO&rsquo;s 80 everyday object types.</p>
+<p>What one number can&rsquo;t show is <em>where</em> the mistakes happen. That&rsquo;s the job of a <strong>confusion matrix</strong>, which breaks results down by object type. Here&rsquo;s an illustrative example for a factory inspection model with three defect types, 50 of each in the test images, shown one type at a time.</p>
+<p><strong>Scratches</strong> (50 in the test images)</p>
+<table>
+<thead>
+<tr>
+<th>Found and labeled scratch</th>
+<th>Labeled as a dent</th>
+<th>Missed entirely</th>
+<th>Other things labeled scratch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>46</td>
+<td>3</td>
+<td>1</td>
+<td>6 (4 dents, 2 empty spots)</td>
+</tr>
+</tbody>
+</table>
+<p>Precision 88% (46 of 52 scratch labels were right) · Recall 92% (46 of 50 scratches found)</p>
+<p><strong>Dents</strong> (50 in the test images)</p>
+<table>
+<thead>
+<tr>
+<th>Found and labeled dent</th>
+<th>Labeled as a scratch</th>
+<th>Missed entirely</th>
+<th>Other things labeled dent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>44</td>
+<td>4</td>
+<td>2</td>
+<td>5 (3 scratches, 1 crack, 1 empty spot)</td>
+</tr>
+</tbody>
+</table>
+<p>Precision 90% (44 of 49 dent labels were right) · Recall 88% (44 of 50 dents found)</p>
+<p><strong>Cracks</strong> (50 in the test images)</p>
+<table>
+<thead>
+<tr>
+<th>Found and labeled crack</th>
+<th>Labeled as a dent</th>
+<th>Missed entirely</th>
+<th>Other things labeled crack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>41</td>
+<td>1</td>
+<td>8</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Precision 100% (41 of 41 crack labels were right) · Recall 82% (41 of 50 cracks found)</p>
+<p><em>Illustrative numbers, not from a real model. Combined into one grid, with the real defect types down the side and the model&rsquo;s labels across the top, these results form the model&rsquo;s confusion matrix.</em></p>
+<p>Every crack the model reported was real, so its precision for cracks is perfect. But it missed 8 of the 50 cracks, the most serious defect, while its other mistakes were mostly harmless scratch-and-dent mix-ups. A single AP score averages all of that away. A team seeing these results would lower the confidence threshold for cracks or add more crack images to the training set.</p>
+<p>This detail is the practical test for any benchmark claim. If RF-DETR&rsquo;s whole-image context cuts false positives in cluttered scenes, it should show up on your own images as fewer &ldquo;other things labeled&rdquo; errors. Roboflow&rsquo;s model evaluation tools show a confusion matrix for each trained model, with precision, recall and F1 (one score that balances the two) at every confidence threshold, so teams can tune a model to the precision and recall their use requires.</p>
+<h2>Where YOLO still makes sense</h2>
+<p>The transformer approach isn&rsquo;t a clean sweep:</p>
+<ul>
+<li>The newest YOLO, YOLO26-X, is slightly more accurate on COCO (56.9 vs 56.5 AP), though slower (9.6 ms).</li>
+<li>On very small devices without dedicated AI hardware, such as a Raspberry Pi, Roboflow confirms YOLO26 is the better fit, because RF-DETR&rsquo;s backbone can&rsquo;t be compressed as far.</li>
+<li>YOLO has the largest user community and the most tutorials and tools.</li>
+</ul>
+<p>Licensing impacts: RF-DETR&rsquo;s Nano through Large models use the permissive Apache 2.0 license, while recent YOLO models use AGPL-3.0, which places conditions on commercial use.</p>
+<h2>Summary</h2>
+<p>The transformer advantage isn&rsquo;t magic; it&rsquo;s whole-image context plus pretraining on massive, diverse image sets. By reading the whole image at once and starting from broad pretraining, RF-DETR handles cluttered scenes and unfamiliar domains better than models that look piece by piece. For most GPU deployments, especially in specialized fields, the published numbers support it. For the smallest edge devices, YOLO still has its place.</p>
+<h2>A note on sources</h2>
+<p>All figures come from Roboflow&rsquo;s published RF-DETR benchmarks and blog. Roboflow develops RF-DETR, but re-ran most competing models with the same method rather than quoting their authors&rsquo; numbers. Independent tests would make the comparison stronger.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://rfdetr.roboflow.com/latest/learn/benchmarks/">RF-DETR benchmarks</a></li>
+<li><a target="_blank" rel="noopener" href="https://roboflow.com/blog/rf-detr-vs-yolo">Roboflow: RF-DETR vs YOLO</a></li>
+<li><a target="_blank" rel="noopener" href="https://roboflow.com/blog/rf-detr-nano-small-medium">Roboflow: Advancing state of the art object detection with RF-DETR</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.roboflow.com/models/evaluate/evaluate-trained-models">Roboflow docs: Evaluate trained models</a></li>
+</ul>
+</article>
+</main>
+</body>
+</html>
