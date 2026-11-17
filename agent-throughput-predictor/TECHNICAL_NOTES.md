@@ -166,8 +166,6 @@ All results come from the 1,000 test sessions held back from training. The [summ
 
 The median error (6.0%) describes only the middle prediction. The chart shows the error for every one of the 1,000 test predictions. Positive errors mean the model over-predicted speed; negative errors mean it under-predicted.
 
-The chart shows the error for every one of the 1,000 test predictions. Positive errors mean the model over-predicted speed; negative errors mean it under-predicted.
-
 ![Distribution of prediction errors](images/error_distribution.png)
 
 | Share of predictions | Error within |
